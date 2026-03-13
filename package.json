@@ -1,0 +1,11 @@
+{
+  "name": "board-game-app",
+  "version": "1.0.0",
+  "description": "Multiplayer board game app",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
