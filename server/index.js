@@ -8,15 +8,20 @@ const registerThirstyGamesEvents = require('./events/thirstyGamesEvents');
 const registerMazeRunnerEvents = require('./events/mazeRunnerEvents');
 
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+const allowedOrigins = [
+  CLIENT_URL,
+  'http://localhost:5173',
+  /\.vercel\.app$/,
+];
 
 const app = express();
-app.use(cors({ origin: CLIENT_URL }));
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: CLIENT_URL,
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
   },
   transports: ['polling', 'websocket'],
