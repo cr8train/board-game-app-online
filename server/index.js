@@ -19,7 +19,7 @@ const io = new Server(server, {
     origin: CLIENT_URL,
     methods: ['GET', 'POST'],
   },
-  transports: ['websocket', 'polling'],
+  transports: ['polling', 'websocket'],
 });
 
 const roomManager = new RoomManager();
@@ -51,6 +51,6 @@ app.get('/health', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Board game server listening on port ${PORT}`);
 });
